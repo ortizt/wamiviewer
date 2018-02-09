@@ -1,0 +1,26 @@
+
+<html>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css" />
+<body>
+    <div id="app" style="height: 75%; width: 50%">
+        <input type="number" placeholder="enter x-coord" v-model.number="xcoord"/>
+        <input type="number" placeholder="enter y-coord" v-model.number="ycoord"/>
+        <input type="number" placeholder="enter zoom value" v-model.number="zoomnew"/>
+      
+        <button @click="adjustMap">Enter</button>
+        <br>
+        <div>
+            <button>+</button>
+            <v-map :zoom="zoom" :center="center" :id="id">
+                <v-tilelayer :url="url" :attribution="attribution" :id="id"></v-tilelayer>
+                <!-- <v-marker :lat-lng="marker"></v-marker> -->
+            </v-map>
+        </div>
+    </div>
+</body>
+<script src="https://unpkg.com/leaflet@1.0.3/dist/leaflet.js" ></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.2.4/vue.js" ></script>
+<script src="https://unpkg.com/vue2-leaflet@0.0.45/dist/vue2-leaflet.js" ></script>
+<script src="client.js"></script>
+
+<html>

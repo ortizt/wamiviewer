@@ -1,0 +1,16 @@
+{
+  "name": "wami",
+  "version": "1.0.0",
+  "description": "WAMI Viewer",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Tim Ortiz and Brennen Berkeley",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.16.2",
+    "socket.io": "^2.0.4",
+    "vue2-leaflet": "0.0.58"
+  }
+}
