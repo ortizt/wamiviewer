@@ -10,7 +10,7 @@ var app = new Vue({
         center:[34, -106],
         url:'http://{s}.tile.osm.org/{z}/{x}/{y}.png',
         attribution:'&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
-        id: 'satellite',
+        id: 'mapbox.satellite',
         xcoord: null,
         ycoord: null,
         zoomnew: null

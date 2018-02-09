@@ -9,13 +9,10 @@
       
         <button @click="adjustMap">Enter</button>
         <br>
-        <div>
-            <button>+</button>
-            <v-map :zoom="zoom" :center="center" :id="id">
-                <v-tilelayer :url="url" :attribution="attribution" :id="id"></v-tilelayer>
-                <!-- <v-marker :lat-lng="marker"></v-marker> -->
-            </v-map>
-        </div>
+        <v-map :zoom="zoom" :center="center" :id="id">
+            <v-tilelayer :url="url" :attribution="attribution" :id="id"></v-tilelayer>
+            <!-- <v-marker :lat-lng="marker"></v-marker> -->
+        </v-map>
     </div>
 </body>
 <script src="https://unpkg.com/leaflet@1.0.3/dist/leaflet.js" ></script>
