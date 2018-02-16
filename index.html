@@ -2,19 +2,25 @@
 <html>
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css" />
 <body>
+    <canvas id="canvas"></canvas>
+    <img id="img-stream2" src="" />
     <div id="app" style="height: 75%; width: 50%">
+        
         <input type="number" placeholder="enter x-coord" v-model.number="xcoord"/>
         <input type="number" placeholder="enter y-coord" v-model.number="ycoord"/>
         <input type="number" placeholder="enter zoom value" v-model.number="zoomnew"/>
+        <!-- <dropdown></dropdown> -->
       
         <button @click="adjustMap">Enter</button>
         <br>
-        <v-map :zoom="zoom" :center="center" :id="id">
-            <v-tilelayer :url="url" :attribution="attribution" :id="id"></v-tilelayer>
-            <!-- <v-marker :lat-lng="marker"></v-marker> -->
+        <v-map :zoom="zoom" :center="center">
+            <v-tilelayer :url="url" :attribution="attribution"></v-tilelayer>
+            <v-marker :lat-lng="marker"></v-marker>
         </v-map>
     </div>
 </body>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.4/socket.io.js"></script>
 <script src="https://unpkg.com/leaflet@1.0.3/dist/leaflet.js" ></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.2.4/vue.js" ></script>
 <script src="https://unpkg.com/vue2-leaflet@0.0.45/dist/vue2-leaflet.js" ></script>
