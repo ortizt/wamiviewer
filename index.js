@@ -18,30 +18,19 @@ app.get('/', function(request, response) {
 
 io.on('connection', function(socket){
     console.log('A user has connected: ' +socket.id);
-    // var readStream = fs.createReadStream(path.resolve(__dirname, '/image.jpg'), {
-    //     encoding: 'binary'
-    // }), chunks = [];
 
-    // readStream.on('readable', function (){
-    //     console.log('Image loading');
-    // });
+    fs.readdir(__dirname + '/images', (err, files) => {
+    
+        var temp = files.slice(0);
+        var temp2 = [];
+        console.log(temp)
+        for (var i = 0; i < files.length; i++) {
+            fs.readFile(__dirname + '/images/' + files[i], function(err, buf){
+                
+                socket.emit('image', {image: true, buffer: buf.toString('base64') }, temp);
+                console.log('image file is initialized');
+            }); 
+        }
+      });
 
-    // readStream.on('data', function(chunk) {
-    //     chunks.push(chunk);
-    //     socket.emit('img-chunk', chunk);
-    // });
-
-    // readStream.on('end', function(){
-    //     console.log('Image loaded');
-    // });
-
-  });
-
-  io.on('connection', function(socket){
-    fs.readFile(__dirname + '/image.jpg', function(err, buf){
-        // it's possible to embed binary data
-        // within arbitrarily-complex objects
-        socket.emit('image', { image: true, buffer: buf.toString('base64') });
-        console.log('image file is initialized');
-    });
   });

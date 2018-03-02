@@ -1,22 +1,45 @@
 
 <html>
-<link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css" />
+<head>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css" />
+    <link rel="stylesheet" type="text/css" href="/style.css"/>
+</head>
+
 <body>
-    <canvas id="canvas"></canvas>
-    <img id="img-stream2" src="" />
-    <div id="app" style="height: 75%; width: 50%">
+    <!-- <canvas id="canvas" style="display: none;"></canvas> -->
+    
+    <div id="app">
+        <div id="lines"></div>
+        <img src="/TSLogo.png" style="height: 25%; width: 50%">
+        <br>
+        <!-- <div class="dropdown">
+            <button @click="dropdown" class="dropbtn">Click to select image</button>
+            <div id="myDropdown" ref="myDropdown" class="dropdown-content">
+                <a type="button" @click ="selectImage" v-for="name in hash.name">{{name}}</a>
+            </div>
+        </div> -->
+
+        <!-- <select>
+            <option value="name" v-for="name in hash.name">{{name}}</option>
+        </select>
+        <input type="submit" value="Submit"> -->
+
+
         
         <input type="number" placeholder="enter x-coord" v-model.number="xcoord"/>
         <input type="number" placeholder="enter y-coord" v-model.number="ycoord"/>
         <input type="number" placeholder="enter zoom value" v-model.number="zoomnew"/>
-        <!-- <dropdown></dropdown> -->
-      
+    
         <button @click="adjustMap">Enter</button>
         <br>
-        <v-map :zoom="zoom" :center="center">
-            <v-tilelayer :url="url" :attribution="attribution"></v-tilelayer>
-            <v-marker :lat-lng="marker"></v-marker>
-        </v-map>
+        <div class="map">
+            <v-map :zoom="zoom" :center="center" >
+                <v-tilelayer :url="url" :attribution="attribution"></v-tilelayer>
+                <v-marker :lat-lng="marker"></v-marker>
+                <!-- <v-rectangle :bounds="bounds"></v-rectangle> -->
+                <v-image-overlay :url="imageUrl" :bounds="bounds" :opacity= "options.opacity"></v-image-overlay>
+            </v-map>
+        </div>
     </div>
 </body>
 
