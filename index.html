@@ -10,8 +10,9 @@
     
     <div id="app">
         <div id="lines"></div>
-        <img src="/TSLogo.png" style="height: 25%; width: 50%">
+        <img src="/TSLogo.png" style="height: 25%; width: 25%">
         <br>
+        <!-- <multiselect></multiselect> -->
         <!-- <div class="dropdown">
             <button @click="dropdown" class="dropbtn">Click to select image</button>
             <div id="myDropdown" ref="myDropdown" class="dropdown-content">
@@ -23,6 +24,7 @@
             <option value="name" v-for="name in hash.name">{{name}}</option>
         </select>
         <input type="submit" value="Submit"> -->
+        <li v-for="name in hash.name">{{name}}</li>
 
 
         
@@ -37,7 +39,7 @@
                 <v-tilelayer :url="url" :attribution="attribution"></v-tilelayer>
                 <v-marker :lat-lng="marker"></v-marker>
                 <!-- <v-rectangle :bounds="bounds"></v-rectangle> -->
-                <v-image-overlay :url="imageUrl" :bounds="bounds" :opacity= "options.opacity"></v-image-overlay>
+                <v-image-overlay :url="hash.bs64[1]" :bounds="bounds" :opacity= "options.opacity"></v-image-overlay>
             </v-map>
         </div>
     </div>
