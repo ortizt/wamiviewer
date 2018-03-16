@@ -3,12 +3,6 @@ Vue.component('v-tilelayer', Vue2Leaflet.TileLayer);
 Vue.component('v-marker', Vue2Leaflet.Marker);
 Vue.component('v-rectangle', Vue2Leaflet.Rectangle);
 Vue.component('v-image-overlay', Vue2Leaflet.ImageOverlay);
-// Vue.component('multiselect', Multiselect);
-// Vue.component('multiselect', VueMultiselect.Multiselect)
-// import Multiselect from './Dropdown.vue'
-
-
-
 
 var socket = io();
 
@@ -44,17 +38,10 @@ var app = new Vue({
             this.xcoord = null;
             this.ycoord = null;
         },
-        selectImage() {
-            for (var i = 0; i < this.filename; i++){
-                if (this.value === this.hash.name[i]) {
-                    this.imageUrl = this.hash.bs64[i];
-                }
-            }
-        },
     },
 
     created() {
-      
+        
         socket.on("image", function(image, temp) {
             if (image) {
               var img = 'data:image/jpeg;base64,' + image.buffer;
@@ -63,6 +50,7 @@ var app = new Vue({
               this.hash = {name: this.filename, bs64: this.imgurls};
               console.log('image served');
             }
+
         }.bind(this));
     },
 });

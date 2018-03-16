@@ -1,54 +1,11 @@
 
 <html>
 <head>
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css" />
-    <link rel="stylesheet" type="text/css" href="/style.css"/>
 </head>
 
 <body>
-    <!-- <canvas id="canvas" style="display: none;"></canvas> -->
+    <h1>Server is running</h1>
     
-    <div id="app">
-        <div id="lines"></div>
-        <img src="/TSLogo.png" style="height: 25%; width: 25%">
-        <br>
-        <!-- <multiselect></multiselect> -->
-        <!-- <div class="dropdown">
-            <button @click="dropdown" class="dropbtn">Click to select image</button>
-            <div id="myDropdown" ref="myDropdown" class="dropdown-content">
-                <a type="button" @click ="selectImage" v-for="name in hash.name">{{name}}</a>
-            </div>
-        </div> -->
-
-        <!-- <select>
-            <option value="name" v-for="name in hash.name">{{name}}</option>
-        </select>
-        <input type="submit" value="Submit"> -->
-        <li v-for="name in hash.name">{{name}}</li>
-
-
-        
-        <input type="number" placeholder="enter x-coord" v-model.number="xcoord"/>
-        <input type="number" placeholder="enter y-coord" v-model.number="ycoord"/>
-        <input type="number" placeholder="enter zoom value" v-model.number="zoomnew"/>
-    
-        <button @click="adjustMap">Enter</button>
-        <br>
-        <div class="map">
-            <v-map :zoom="zoom" :center="center" >
-                <v-tilelayer :url="url" :attribution="attribution"></v-tilelayer>
-                <v-marker :lat-lng="marker"></v-marker>
-                <!-- <v-rectangle :bounds="bounds"></v-rectangle> -->
-                <v-image-overlay :url="hash.bs64[1]" :bounds="bounds" :opacity= "options.opacity"></v-image-overlay>
-            </v-map>
-        </div>
-    </div>
 </body>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.4/socket.io.js"></script>
-<script src="https://unpkg.com/leaflet@1.0.3/dist/leaflet.js" ></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.2.4/vue.js" ></script>
-<script src="https://unpkg.com/vue2-leaflet@0.0.45/dist/vue2-leaflet.js" ></script>
-<script src="client.js"></script>
 
 <html>

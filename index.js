@@ -18,19 +18,45 @@ app.get('/', function(request, response) {
 
 io.on('connection', function(socket){
     console.log('A user has connected: ' +socket.id);
-
+    var temp2 = [];
     fs.readdir(__dirname + '/images', (err, files) => {
     
         var temp = files.slice(0);
-        var temp2 = [];
-        console.log(temp)
-        for (var i = 0; i < files.length; i++) {
-            fs.readFile(__dirname + '/images/' + files[i], function(err, buf){
+        temp2 = temp;
+        // console.log(temp)
+        socket.emit('images', temp);
+        // for (var i = 0; i < files.length; i++) {
+        //     fs.readFile(__dirname + '/images/' + files[i], function(err, buf){
                 
-                socket.emit('image', {image: true, buffer: buf.toString('base64') }, temp);
-                console.log('image file is initialized');
-            }); 
-        }
+        //         socket.emit('image', {image: true, buffer: buf.toString('base64') }, temp);
+        //         console.log('image file is initialized');
+        //     }); 
+        // }
       });
+      socket.on('selected', (selection, count) => {
+        //   console.log(temp2)
+          console.log(selection)
+          fs.readdir(__dirname + '/images/' + selection, (err, files) => {
+            // console.log(files)
+            var temp = files.slice(0);
+            // console.log(temp)
+            // for (count; count < files.length; count++) {
+            while(true) {
+                // console.log(files.length)
+                var j = 0
+                // console.log(i)
+                fs.readFile(__dirname + '/images/' + selection + '/' + files[j], function(err, buf){
+                    socket.emit('image', {image: true, buffer: buf.toString('base64') }, count);
+                    console.log('image file sent');
+                    // console.log(i)
+                    if (j == files.length-1) {
+                        console.log('no more images')
+                    } 
+                });
+                console.log(j)
+                j += 1
+            }
+          });
+      })
 
   });
