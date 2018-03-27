@@ -33,28 +33,31 @@ io.on('connection', function(socket){
         //     }); 
         // }
       });
-      socket.on('selected', (selection, count) => {
+      socket.on('selected', (selection) => {
         //   console.log(temp2)
           console.log(selection)
           fs.readdir(__dirname + '/images/' + selection, (err, files) => {
             // console.log(files)
             var temp = files.slice(0);
             // console.log(temp)
-            // for (count; count < files.length; count++) {
-            while(true) {
+            var i = 0;
+            for (i; i < files.length; i++) {
                 // console.log(files.length)
                 var j = 0
                 // console.log(i)
-                fs.readFile(__dirname + '/images/' + selection + '/' + files[j], function(err, buf){
-                    socket.emit('image', {image: true, buffer: buf.toString('base64') }, count);
+                fs.readFile(__dirname + '/images/' + selection + '/' + files[i], function(err, buf){
+                    socket.emit('image', {image: true, buffer: buf.toString('base64') });
                     console.log('image file sent');
+                    setTimeout(function(){
+                        console.log('after');
+                    },1000000);
                     // console.log(i)
                     if (j == files.length-1) {
                         console.log('no more images')
                     } 
+                    j += 1
                 });
-                console.log(j)
-                j += 1
+                // console.log(j)
             }
           });
       })
