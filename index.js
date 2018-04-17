@@ -23,7 +23,7 @@ io.on('connection', function(socket){
     
         var temp = files.slice(0);
         temp2 = temp;
-        // console.log(temp)
+        // console.log(temp.length)
         socket.emit('images', temp);
         // for (var i = 0; i < files.length; i++) {
         //     fs.readFile(__dirname + '/images/' + files[i], function(err, buf){
@@ -48,9 +48,6 @@ io.on('connection', function(socket){
                 fs.readFile(__dirname + '/images/' + selection + '/' + files[i], function(err, buf){
                     socket.emit('image', {image: true, buffer: buf.toString('base64') });
                     console.log('image file sent');
-                    setTimeout(function(){
-                        console.log('after');
-                    },1000000);
                     // console.log(i)
                     if (j == files.length-1) {
                         console.log('no more images')
