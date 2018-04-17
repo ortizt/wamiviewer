@@ -46,7 +46,7 @@ io.on('connection', function(socket){
                 var j = 0
                 // console.log(i)
                 fs.readFile(__dirname + '/images/' + selection + '/' + files[i], function(err, buf){
-                    socket.emit('image', {image: true, buffer: buf.toString('base64') });
+                    socket.emit('image', {image: true, buffer: buf.toString('base64') }, files.length);
                     console.log('image file sent');
                     // console.log(i)
                     if (j == files.length-1) {
