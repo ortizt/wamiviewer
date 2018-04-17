@@ -34,29 +34,16 @@ io.on('connection', function(socket){
         // }
       });
       socket.on('selected', (selection) => {
-        //   console.log(temp2)
-          console.log(selection)
-          fs.readdir(__dirname + '/images/' + selection, (err, files) => {
-            // console.log(files)
-            var temp = files.slice(0);
-            // console.log(temp)
-            var i = 0;
-            for (i; i < files.length; i++) {
-                // console.log(files.length)
-                var j = 0
-                // console.log(i)
-                fs.readFile(__dirname + '/images/' + selection + '/' + files[i], function(err, buf){
-                    socket.emit('image', {image: true, buffer: buf.toString('base64') }, files.length);
-                    console.log('image file sent');
-                    // console.log(i)
-                    if (j == files.length-1) {
-                        console.log('no more images')
-                    } 
-                    j += 1
-                });
-                // console.log(j)
-            }
-          });
+        console.log(selection);
+        var files = fs.readdirSync(__dirname + '/images/' + selection);
+
+        var i = 0;
+        for (i; i < files.length; i++) {
+            var fileContents = fs.readFileSync(__dirname + '/images/' + selection + '/' + files[i]);
+            socket.emit('image', {image: true, buffer: fileContents.toString('base64') }, files.length);
+            console.log('image file sent: ' + files[i]);
+        }
+        console.log('no more images')
       })
 
   });
